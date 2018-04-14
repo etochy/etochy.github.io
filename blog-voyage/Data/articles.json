@@ -1,0 +1,14 @@
+{
+    "articles":[{
+            "date": "10/04/2018",
+            "titre": "Test",
+            "description": "Ceci est une descriptin",
+            "id": "1"
+        },
+        {
+            "date": "Alfreds Futterkiste",
+            "titre": "Berlin",
+            "description": "Germany",
+            "id": "2"
+        }]
+}
