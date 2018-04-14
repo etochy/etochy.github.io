@@ -39,10 +39,14 @@
             <h1>Hello {{yourName}}!</h1>
         </div>
 
-        <div ng-repeat="li in list" class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div ng-repeat="li in list" class="demo-card-wide mdl-card mdl-shadow--2dp">    
+            
             <div class="mdl-card__title">
                 <h2 class="mdl-card__title-text">{{ li.titre }}</h2>
             </div>
+
+            <img src='{{ li.photo }}' alt="">
+
             <div class="mdl-card__supporting-text">
                 {{ li.description }}
             </div>
