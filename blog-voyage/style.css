@@ -1,10 +1,28 @@
-.demo-card-wide.mdl-card {
-width: 200px;
-}
+
 .demo-card-wide > .mdl-card__title {
 color: #000;
-background: url('../assets/demos/welcome_card.jpg') center / cover;
 }
 .demo-card-wide > .mdl-card__menu {
 color: #000;
+}
+
+.page-base{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card{
+    flex: 1;
+    max-width: 800px;
+    max-height: 800px;
+    width: 800px;
+    display: flex;
+    margin-top: 5px;
+}
+
+.images{
+    max-width: 800px;
+    max-height: 800px;
+    align-self: center;
 }

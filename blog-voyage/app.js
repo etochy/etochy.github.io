@@ -23,13 +23,17 @@ app.controller("menuCtrl", function ($scope) {
 
 
 app.controller("contentCtrl", function ($scope, $http) {
-    $scope.yourName = "test";
+    var x = "https://sheetsu.com/apis/v1.0su/3f6aa466c06b?limit=10&offset=0";
 
-    $http.get("Data/articles.json")
+    $scope.valid = true;
+
+    $http.get(x)
         .then(function (response) {
-            $scope.list = response.data.articles;
+            $scope.list = response.data;
+            $scope.valid = false;
             console.log($scope.list);
         }).catch(function (error) {
+            $scope.valid = true;
             console.log(error);
         });
 
