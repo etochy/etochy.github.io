@@ -36,21 +36,20 @@
 
         <div class="page-base">
 
-            <!-- MDL Spinner Component with Single Color -->
-            <div ng-if="valid" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active"></div>
-
             <div ng-repeat="article in list" class="demo-card-wide mdl-card mdl-shadow--2dp card">
 
+                <!-- 0 = date ; 1 = titre ; 2 = description ; 3 = photo -->
+
                 <div class="mdl-card__title">
-                    <h2 class="mdl-card__title-text">{{ article.titre }}</h2>
+                    <h2 class="mdl-card__title-text">{{ article[1] }}</h2>
                 </div>
 
                 <div style="align-self: center;">
-                    <img src='{{ article.photo }}' alt="{{ article.description }}" class="images">
+                    <img src='{{ article[3] }}' alt="{{ article.description }}" class="images">
                 </div>
 
                 <div class="mdl-card__supporting-text">
-                    {{ article.description }}
+                    {{ article[2] }}
                 </div>
 
                 <div class="mdl-card__actions mdl-card--border">
@@ -66,6 +65,18 @@
                 </div>
 
             </div>
+
+
+            <a ng-if="!valid" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="chargerPlus()">
+                Voir plus
+            </a>
+            <br>
+            <!-- MDL Spinner Component with Single Color -->
+            <div ng-if="valid">
+                <p class="mdl-spinner mdl-js-spinner is-active" style="width: 50px; height: 50px; flex: 1">
+                </p>
+            </div>
+
         </div>
     </section>
 
@@ -74,8 +85,6 @@
         <h1>FOOTER</h1>
 
     </section>
-
-
 
     <script src="./app.js"></script>
 </body>
