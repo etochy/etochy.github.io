@@ -1,28 +1,6 @@
 var app = angular.module("app", []);
 
-
-app.controller("headerCtrl", function ($scope) {
-
-    //...    
-
-});
-
-
-app.controller("footerCtrl", function ($scope) {
-
-    //...    
-
-});
-
-
-app.controller("menuCtrl", function ($scope) {
-
-    //...    
-
-});
-
-
-app.controller("contentCtrl", function ($scope, $http) {
+app.controller("contentCtrl", function ($window, $scope, $http) {
     let i = 2;
     let j = 6
     let x = "https://sheetsu.com/apis/v1.0su/3f6aa466c06b?limit=5&offset=";
@@ -31,6 +9,19 @@ app.controller("contentCtrl", function ($scope, $http) {
     let y0 = "https://sheets.googleapis.com/v4/spreadsheets/10deKDNcIkzjqp1jUdBEwBfC-ykKaCDxuGDOyyDViC_8/values/A"
     let y1 = ":D";
     let y2 = "?valueRenderOption=FORMATTED_VALUE&dateTimeRenderOption=FORMATTED_STRING&alt=json&key=AIzaSyAHsg8sK46DfPSTa1WZETcB0nLUCqmXLxw";
+
+    const elem = document.getElementById("header");
+
+    // On recupere la position du scroll
+    angular.element(document.querySelector('.mdl-layout__content')).bind('scroll', function (scroll) {
+        console.log(scroll.originalTarget.scrollTop);
+        if (scroll.originalTarget.scrollTop > 0) {
+            let h =  300-scroll.originalTarget.scrollTop;
+            elem.style = "height: " + h + "px;";
+        } else {
+            elem.clientHeight = 300;
+        }
+    })
 
     $scope.valid = true;
 
@@ -51,7 +42,6 @@ app.controller("contentCtrl", function ($scope, $http) {
     $scope.alerter = function () {
         console.log("coucou " + $scope.yourName);
     }
-    //...  
 
     $scope.chargerPlus = function () {
         $scope.valid = true;

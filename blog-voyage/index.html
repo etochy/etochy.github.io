@@ -17,72 +17,175 @@
 </head>
 
 <body>
-
-    <section ng-controller="headerCtrl">
-
-        <h1>HEADER</h1>
-
-    </section>
-
-    <section ng-controller="menuCtrl">
-
-        <h1>MENU</h1>
-
-    </section>
-
     <section ng-controller="contentCtrl">
+        <div class=" mdl-layout mdl-js-layout">
+            <div id="header" class="mdl-layout__header demo-layout-transparent" style="height: 300px;">
+                <header class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <span class="mdl-layout-title">Voyages d'un photopgraque amateur</span>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation -->
+                    <nav class="mdl-navigation">
+                        <a class="mdl-navigation__link mdl-navigation__link--icon github" href="https://github.com/etochy/etochy.github.io">
+                            <i class="material-icons">link</i>
+                            <span>Github</span>
+                        </a>
+                    </nav>
+            </div>
+            </header>
 
-        <h1>Hello World</h1>
-
-        <div class="page-base">
-
-            <div ng-repeat="article in list" class="demo-card-wide mdl-card mdl-shadow--2dp card">
-
-                <!-- 0 = date ; 1 = titre ; 2 = description ; 3 = photo -->
-
-                <div class="mdl-card__title">
-                    <h2 class="mdl-card__title-text">{{ article[1] }}</h2>
-                </div>
-
-                <div style="align-self: center;">
-                    <img src='{{ article[3] }}' alt="{{ article.description }}" class="images">
-                </div>
-
-                <div class="mdl-card__supporting-text">
-                    {{ article[2] }}
-                </div>
-
-                <div class="mdl-card__actions mdl-card--border">
-                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="alerter()">
-                        Get Started
+            <!--
+            <div class="mdl-layout__drawer">
+                <span class="mdl-layout-title">Menu</span>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link mdl-navigation__link--icon github" href="https://github.com/etochy/etochy.github.io">
+                        <i class="material-icons">link</i>
+                        <span>Github</span>
                     </a>
+
+                </nav>
+            </div>
+-->
+            <main class="mdl-layout__content">
+                <div class="page-base">
+                    <div ng-repeat="article in list" class="demo-card-wide mdl-card mdl-shadow--2dp card">
+
+                        <!-- 0 = date ; 1 = titre ; 2 = description ; 3 = photo -->
+
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text">{{ article[1] }}</h2>
+                        </div>
+
+                        <div style="align-self: center;">
+                            <img src='{{ article[3] }}' alt="{{ article.description }}" class="images">
+                        </div>
+
+                        <div class="mdl-card__supporting-text">
+                            {{ article[2] }}
+                        </div>
+
+                        <div class="mdl-card__actions mdl-card--border">
+                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="alerter()">
+                                Get Started
+                            </a>
+                        </div>
+
+                        <div class="mdl-card__menu">
+                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                                <i class="material-icons">share</i>
+                            </button>
+                        </div>
+
+                    </div>
+
+
+                    <a ng-if="!valid" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="chargerPlus()">
+                        Voir plus
+                    </a>
+                    <br>
+                    <!-- MDL Spinner Component with Single Color -->
+                    <div ng-if="valid">
+                        <p class="mdl-spinner mdl-js-spinner is-active" style="width: 50px; height: 50px; flex: 1">
+                        </p>
+                    </div>
+
                 </div>
 
-                <div class="mdl-card__menu">
-                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                        <i class="material-icons">share</i>
-                    </button>
-                </div>
 
-            </div>
+                <footer class="mdl-mega-footer">
+                    <div class="mdl-mega-footer__middle-section">
 
+                        <div class="mdl-mega-footer__drop-down-section">
+                            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+                            <h1 class="mdl-mega-footer__heading">Features</h1>
+                            <ul class="mdl-mega-footer__link-list">
+                                <li>
+                                    <a href="#">About</a>
+                                </li>
+                                <li>
+                                    <a href="#">Terms</a>
+                                </li>
+                                <li>
+                                    <a href="#">Partners</a>
+                                </li>
+                                <li>
+                                    <a href="#">Updates</a>
+                                </li>
+                            </ul>
+                        </div>
 
-            <a ng-if="!valid" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="chargerPlus()">
-                Voir plus
-            </a>
-            <br>
-            <!-- MDL Spinner Component with Single Color -->
-            <div ng-if="valid">
-                <p class="mdl-spinner mdl-js-spinner is-active" style="width: 50px; height: 50px; flex: 1">
-                </p>
-            </div>
+                        <div class="mdl-mega-footer__drop-down-section">
+                            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+                            <h1 class="mdl-mega-footer__heading">Details</h1>
+                            <ul class="mdl-mega-footer__link-list">
+                                <li>
+                                    <a href="#">Specs</a>
+                                </li>
+                                <li>
+                                    <a href="#">Tools</a>
+                                </li>
+                                <li>
+                                    <a href="#">Resources</a>
+                                </li>
+                            </ul>
+                        </div>
 
+                        <div class="mdl-mega-footer__drop-down-section">
+                            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+                            <h1 class="mdl-mega-footer__heading">Technology</h1>
+                            <ul class="mdl-mega-footer__link-list">
+                                <li>
+                                    <a href="#">How it works</a>
+                                </li>
+                                <li>
+                                    <a href="#">Patterns</a>
+                                </li>
+                                <li>
+                                    <a href="#">Usage</a>
+                                </li>
+                                <li>
+                                    <a href="#">Products</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contracts</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="mdl-mega-footer__drop-down-section">
+                            <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
+                            <h1 class="mdl-mega-footer__heading">FAQ</h1>
+                            <ul class="mdl-mega-footer__link-list">
+                                <li>
+                                    <a href="#">Questions</a>
+                                </li>
+                                <li>
+                                    <a href="#">Answers</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contact us</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="mdl-mega-footer__bottom-section">
+                        <div class="mdl-logo">Title</div>
+                        <ul class="mdl-mega-footer__link-list">
+                            <li>
+                                <a href="#">Help</a>
+                            </li>
+                            <li>
+                                <a href="#">Privacy & Terms</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </footer>
+            </main>
         </div>
-    </section>
-
-    <section ng-controller="footerCtrl">
-
-        <h1>FOOTER</h1>
 
     </section>
 

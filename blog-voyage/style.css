@@ -15,6 +15,7 @@ color: #000;
 .card{
     flex: 1;
     max-width: 800px;
+    min-width: 200px;
     width: 800px;
     display: flex;
     margin-top: 5px;
@@ -24,4 +25,19 @@ color: #000;
     max-width: 800px;
     max-height: 800px;
     align-self: center;
+}
+.demo-layout-transparent {
+    background: url('./Data/header.jpg') center / cover;
+  }
+.demo-layout-transparent .mdl-layout__header .mdl-layout__drawer-button {
+/* This background is dark, so we set text to white. Use 87% black instead if
+    your background is light. */
+color: white;
+height: 300px;
+}
+.mdl-layout__content{
+    overflow-y: scroll;
+}
+.height-200 {
+    height: 200px;
 }
