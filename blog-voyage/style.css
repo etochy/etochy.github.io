@@ -14,30 +14,37 @@ color: #000;
 
 .card{
     flex: 1;
-    max-width: 800px;
-    min-width: 200px;
-    width: 800px;
     display: flex;
+    min-width: 300px;
+    width: 100%;
     margin-top: 5px;
 }
 
 .images{
-    max-width: 800px;
-    max-height: 800px;
+    max-height: 700px;
+    width: 100%;
     align-self: center;
 }
-.demo-layout-transparent {
-    background: url('./Data/header.jpg') center / cover;
-  }
+.spinner {
+    width: 50px; 
+    height: 50px; 
+    flex: 1;
+}
+
 .demo-layout-transparent .mdl-layout__header .mdl-layout__drawer-button {
 /* This background is dark, so we set text to white. Use 87% black instead if
     your background is light. */
-color: white;
-height: 300px;
+    color: white;
+    
 }
-.mdl-layout__content{
-    overflow-y: scroll;
-}
-.height-200 {
+
+.mdl-layout__header{
+    background: url('./Data/header.jpg') center / cover;
     height: 200px;
 }
+
+.image-pays{
+    max-width: 100px;
+    max-height: 100px;
+}
+

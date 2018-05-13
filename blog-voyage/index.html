@@ -12,27 +12,29 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
-    <title>Voyages d'un photopgraque amateur</title>
+    <title>Voyages d'un photographe amateur</title>
 
 </head>
 
 <body>
     <section ng-controller="contentCtrl">
-        <div class=" mdl-layout mdl-js-layout">
-            <div id="header" class="mdl-layout__header demo-layout-transparent" style="height: 300px;">
-                <header class="mdl-layout__header-row">
+        <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+            <header class="mdl-layout__header mdl-layout__header--transparent mdl-layout__header--scroll">
+                <!--mdl-layout__header--transparent-->
+                <div class="mdl-layout__header-row">
                     <!-- Title -->
-                    <span class="mdl-layout-title">Voyages d'un photopgraque amateur</span>
+                    <span class="mdl-layout-title">Voyages d'un photographe amateur</span>
                     <!-- Add spacer, to align navigation to the right -->
                     <div class="mdl-layout-spacer"></div>
                     <!-- Navigation -->
                     <nav class="mdl-navigation">
-                        <a class="mdl-navigation__link mdl-navigation__link--icon github" href="https://github.com/etochy/etochy.github.io">
+                        <a class="mdl-navigation__link mdl-navigation__link--icon github" href="https://github.com/etochy/etochy.github.io/tree/master/blog-voyage">
                             <i class="material-icons">link</i>
                             <span>Github</span>
                         </a>
+
                     </nav>
-            </div>
+                </div>
             </header>
 
             <!--
@@ -48,48 +50,100 @@
             </div>
 -->
             <main class="mdl-layout__content">
-                <div class="page-base">
-                    <div ng-repeat="article in list" class="demo-card-wide mdl-card mdl-shadow--2dp card">
 
-                        <!-- 0 = date ; 1 = titre ; 2 = description ; 3 = photo -->
-
-                        <div class="mdl-card__title">
-                            <h2 class="mdl-card__title-text">{{ article[1] }}</h2>
+                <div class="mdl-grid">
+                    <!-- PARTIE GAUCHE ECRAN-->
+                    <div class="mdl-cell mdl-cell--3-col">
+                        <!-- MDL Spinner Component with Single Color -->
+                        <div ng-if="validPerso">
+                            <p class="mdl-spinner mdl-js-spinner is-active spinner">
+                            </p>
                         </div>
 
-                        <div style="align-self: center;">
-                            <img src='{{ article[3] }}' alt="{{ article.description }}" class="images">
-                        </div>
+                        <div ng-if="!validPerso" class="demo-card-wide mdl-card mdl-shadow--2dp card">
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">Où je suis :</h2>
+                            </div>
+                            <div style="align-self: center;">
+                                <a href="{{ infosPerso[1] }}">
+                                    <img src='{{ infosPerso[1] }}' alt="Magnifique photo malheureusement non chargée" class="image-pays">
+                                </a>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                <p>Pays actuel : {{ infosPerso[0] }}</p>
+                                <p>Ville actuelle : {{ infosPerso[2] }}</p>
+                            </div>
 
-                        <div class="mdl-card__supporting-text">
-                            {{ article[2] }}
+                            <!--
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="alerter()">
+                                    Get Started
+                                </a>
+                            </div>
+                            -->
                         </div>
+                    </div>
 
-                        <div class="mdl-card__actions mdl-card--border">
-                            <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="alerter()">
-                                Get Started
+                    <div class="mdl-cell mdl-cell--6-col">
+
+                        <div class="page-base">
+                            <div ng-repeat="article in list" class="demo-card-wide mdl-card mdl-shadow--2dp card">
+
+                                <!-- 0 = date ; 1 = titre ; 2 = description ; 3 = photo -->
+
+                                <div class="mdl-card__title">
+                                    <h2 class="mdl-card__title-text">{{ article[1] }}</h2>
+                                </div>
+
+                                <div style="align-self: center;">
+                                    <a href="{{ article[3] }}">
+                                        <img src='{{ article[3] }}' alt="Magnifique photo malheureusement non chargée" class="images">
+                                    </a>
+                                </div>
+
+                                <div class="mdl-card__supporting-text">
+                                    {{ article[2] }}
+                                </div>
+
+                                <div class="mdl-card__actions mdl-card--border">
+                                    Posté le : {{ article[0] }}
+                                </div>
+
+                                <div class="mdl-card__menu">
+
+                                </div>
+
+                            </div>
+
+
+                            <a ng-if="!valid" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="chargerPlus()">
+                                Voir plus
                             </a>
+                            <br>
+                            <!-- MDL Spinner Component with Single Color -->
+                            <div ng-if="valid">
+                                <p class="mdl-spinner mdl-js-spinner is-active spinner">
+                                </p>
+                            </div>
                         </div>
-
-                        <div class="mdl-card__menu">
-                            <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-                                <i class="material-icons">share</i>
-                            </button>
-                        </div>
-
                     </div>
 
-
-                    <a ng-if="!valid" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="chargerPlus()">
-                        Voir plus
-                    </a>
-                    <br>
-                    <!-- MDL Spinner Component with Single Color -->
-                    <div ng-if="valid">
-                        <p class="mdl-spinner mdl-js-spinner is-active" style="width: 50px; height: 50px; flex: 1">
-                        </p>
+                    <!-- PARTIE DROITE ECRAN-->
+                    <div class="mdl-cell mdl-cell--3-col">
+                        <div class="demo-card-wide mdl-card mdl-shadow--2dp card">
+                            <div class="mdl-card__title">
+                                <h2 class="mdl-card__title-text">Présentation</h2>
+                            </div>
+                            <div class="mdl-card__supporting-text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenan convallis.
+                            </div>
+                            <div class="mdl-card__actions mdl-card--border">
+                                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" ng-click="alerter()">
+                                    Get Started
+                                </a>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
 
 

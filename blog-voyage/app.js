@@ -12,19 +12,33 @@ app.controller("contentCtrl", function ($window, $scope, $http) {
 
     const elem = document.getElementById("header");
 
-    // On recupere la position du scroll
+    
+    /* Permet de modifier la hauteur d'un element en fonction du scroll  @deprecated
     angular.element(document.querySelector('.mdl-layout__content')).bind('scroll', function (scroll) {
-        console.log(scroll.originalTarget.scrollTop);
         if (scroll.originalTarget.scrollTop > 0) {
-            let h =  300-scroll.originalTarget.scrollTop;
+            let h = 300 - scroll.originalTarget.scrollTop;
             elem.style = "height: " + h + "px;";
         } else {
-            elem.clientHeight = 300;
+           elem.clientHeight = 300;
         }
     })
-
+*/
     $scope.valid = true;
+    $scope.validPerso = true;
 
+    // récuperer Infos Temps reel
+    const req = "https://sheets.googleapis.com/v4/spreadsheets/10deKDNcIkzjqp1jUdBEwBfC-ykKaCDxuGDOyyDViC_8/values/F" + 2 + ":H2"+"?valueRenderOption=FORMATTED_VALUE&dateTimeRenderOption=FORMATTED_STRING&alt=json&key=AIzaSyAHsg8sK46DfPSTa1WZETcB0nLUCqmXLxw";
+    $http.get(req)
+        .then(function (response) {
+            if (response.data.values.length != null) {
+                $scope.infosPerso = response.data.values[0];
+                $scope.validPerso = false;
+            }
+        }).catch(function (error) {
+            $scope.validPerso = false;
+        });
+
+    // recuperer arrticles
     $http.get(y0 + i + y1 + j + y2)
         .then(function (response) {
             if (response.data.values.length != null) {
@@ -34,7 +48,7 @@ app.controller("contentCtrl", function ($window, $scope, $http) {
             }
             $scope.valid = false;
         }).catch(function (error) {
-            $scope.valid = true;
+            $scope.valid = false;
         });
 
 
